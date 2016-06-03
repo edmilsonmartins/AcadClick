@@ -1,0 +1,99 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Grupo</ui:define>
+
+	<ui:define name="content">
+		<p:growl id="mensagem" />
+
+		<h:form id="formListagem">
+			<p:panel header="Grupos - Listagem">
+				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+					paginator="true" value="#{grupoBean.grupos}" var="grupo">
+					<f:facet name="header">
+						<p:commandButton icon="ui-icon-plus"
+							oncomplete="PF('dlgGrupos').show();"
+							actionListener="#{grupoBean.novo}" update=":formCadastro:painel">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-print"
+							actionListener="#{grupoBean.imprimir}" />
+					</f:facet>
+					<p:column headerText="Código"
+						filterStyle="max-width: 40px; min-width: 40px;" width="50"
+						style="text-align: center">
+						<h:outputText value="#{grupo.codigo}" />
+					</p:column>
+
+					<p:column headerText="Nome" sortBy="#{grupo.nome}"
+						filterBy="#{grupo.nome}" style="text-align: center">
+						<h:outputText value="#{grupo.nome}" />
+					</p:column>
+
+					<p:column headerText="Descrição">
+						<h:outputText value="#{grupo.descricao}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{grupoBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação" message="Deseja excluir o grupo?"
+								icon="ui-icon-alert" />
+							<f:attribute name="grupoSelecionado" value="#{grupo}" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{grupoBean.editar}"
+							update=":formCadastro:painel"
+							oncomplete="PF('dlgGrupos').show();">
+							<f:attribute name="grupoSelecionado" value="#{grupo}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Grupos - Cadastro" widgetVar="dlgGrupos"
+			draggable="false" resizable="false" modal="true" closable="false">
+			<h:form id="formCadastro">
+				<h:panelGrid id="painel" columns="2">
+					<p:outputLabel for="nome" value="Nome: " />
+					<p:inputText id="nome" maxlength="3" size="10"
+						value="#{grupoBean.grupo.nome}" required="true"
+						requiredMessage="O campo 'Nome' é obrigatório" />
+
+					<p:outputLabel for="descricao" value="Descrição: " />
+					<p:inputText id="descricao" maxlength="10" size="30"
+						value="#{grupoBean.grupo.descricao}" required="true"
+						requiredMessage="O campo 'Descrição' é obrigatório" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						actionListener="#{grupoBean.salvar}"
+						update=":mensagem :formCadastro:painel :formListagem:tabela"
+						oncomplete="PF('dlgGrupos').hide();" />
+					<p:commandButton value="Cancelar"
+						oncomplete="PF('dlgGrupos').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,77 @@
+/* BASE */
+body {
+	margin: 0;
+	font-size: 13px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* TOPBAR */
+.am-topbar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	min-height: 70px;
+	z-index: 9999;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+	background-color: #0770A5;
+}
+
+.am-topbar>img {
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+/* SIDEBAR */
+.am-sidebar {
+	position: fixed;
+	top: 76px;
+	bottom: 0;
+	left: 0;
+	width: 210px;
+	margin-left: -211px;
+	z-index: 9998;
+	transition: margin-left 0.5s;
+	overflow-y: auto;
+	background-color: #f6f6f6;
+	border-right: 1px solid #eaeaea;
+	box-shadow: 2px 2px 2px #CCC;
+}
+
+.am-sidebar.is-toggled {
+	margin-left: 0px;
+}
+
+@media ( min-width : 960px) {
+	.am-sidebar {
+		margin-left: 0px;
+	}
+	.am-sidebar.is-toggled {
+		margin-left: -211px;
+	}
+}
+
+/* CONTENT */
+.am-content {
+	padding: 0 15px;
+	margin-top: 76px;
+	transition: margin-left 0.5s;
+}
+
+@media ( min-width : 960px) {
+	.am-content {
+		margin-left: 210px;
+	}
+	.am-content.is-toggled {
+		margin-left: 0;
+	}
+}
+
+/* UTIL*/
+.clearfix:after {
+	content: " "; /* Older browser do not support empty content */
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}

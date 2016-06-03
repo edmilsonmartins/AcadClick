@@ -1,0 +1,92 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:dataGrid var="aluno" value="#{gGJBean.alunosGGJ}" columns="6"
+				layout="grid" rows="12" paginator="true" id="cars"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="6,12,16">
+
+				<f:facet name="header">
+            		GGI - Grande Grupo Infantil
+        		</f:facet>
+
+				<p:panel header="#{aluno.nome}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+
+						<p:graphicImage id="foto" value="#{imagemBean.foto}">
+							<f:param name="caminho" value="#{aluno.caminho}" />
+						</p:graphicImage>
+
+						<p:commandButton icon="ui-icon ui-icon-search"
+							actionListener="#{alunoBean.editar}"
+							update=":formListagem:painel :formListagem:painel2"
+							oncomplete="PF('carDialog').show();">
+							<f:attribute name="alunoSelecionado" value="#{aluno}" />
+						</p:commandButton>
+					</h:panelGrid>
+				</p:panel>
+
+			</p:dataGrid>
+		</h:form>
+
+		<p:dialog header="Detalhes do Aluno" widgetVar="carDialog" modal="true">
+			<h:form id="formListagem">
+				<p:panelGrid columns="2">
+					<p:panel id="painel" header="Foto">
+						<p:graphicImage id="foto" value="#{imagemBean.foto}">
+							<f:param name="caminho" value="#{alunoBean.aluno.caminho}" />
+						</p:graphicImage>
+
+					</p:panel>
+					<p:panel id="painel2" header="Alunos - Listagem">
+						<h:panelGrid id="painel3" columns="4">
+
+							<p:outputLabel value="Nome:" style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.nome}"
+								style="margin-right: 2cm;" />
+
+							<p:outputLabel value="Sexo:" style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.sexo.name()}" />
+
+							<p:outputLabel value="Dt Cadastro: " style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.dataCadastro}" />
+
+							<p:outputLabel value="Dt Nascimento: " style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.dataNascimento}" />
+
+							<p:outputLabel value="Pai: " style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.pai}" />
+
+							<p:outputLabel value="Mãe: " style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.mae}" />
+
+							<p:outputLabel value="Telefone:" style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.telefone}" />
+
+							<p:outputLabel value="Celular:" style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.celular}" />
+
+							<p:outputLabel value="Responsavel: " style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.responsavel.nome}" />
+
+							<p:outputLabel value="Email:" style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.email}" />
+
+							<p:outputLabel value="Grupo: " style="font-weight: bold" />
+							<p:outputLabel value="#{alunoBean.aluno.grupo.nome}" />
+
+						</h:panelGrid>
+					</p:panel>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+
+</ui:composition>

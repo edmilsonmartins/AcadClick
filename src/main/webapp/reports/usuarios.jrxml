@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-31T21:29:23 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="alunos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c9e708e7-53f5-4fe1-b3b7-77dd801b04e9">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AcadClick Data Adapter "/>
+	<parameter name="USUARIO_NOME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT db_acadclick.tb_grupo.gru_nome,
+	db_acadclick.tb_usuario.codigo,
+	db_acadclick.tb_usuario.usu_dt_cadastro,
+	db_acadclick.tb_usuario.`usu_dataNasc`,
+	db_acadclick.tb_usuario.usu_nome,
+	db_acadclick.tb_usuario.usu_sexo,
+	db_acadclick.tb_usuario.usu_cpf,
+	db_acadclick.tb_usuario.usu_rg,
+	db_acadclick.tb_usuario.usu_certidao_nascimento,
+	db_acadclick.tb_usuario.usu_pai,
+	db_acadclick.tb_usuario.usu_mae,
+	db_acadclick.tb_usuario.usu_telefone,
+	db_acadclick.tb_usuario.usu_celular,
+	db_acadclick.tb_usuario.usu_email,
+	db_acadclick.tb_usuario.usu_senha,
+	db_acadclick.tb_usuario.usu_tipo,
+	db_acadclick.tb_usuario.usu_ativo,
+	db_acadclick.tb_usuario.codigo_grupo,
+	db_acadclick.tb_tipousuario.tip_nome
+FROM db_acadclick.tb_usuario
+	INNER JOIN db_acadclick.tb_grupo ON 
+	 db_acadclick.tb_usuario.codigo_grupo = db_acadclick.tb_grupo.codigo 
+	INNER JOIN db_acadclick.tb_tipousuario ON 
+	 db_acadclick.tb_usuario.usu_tipo = db_acadclick.tb_tipousuario.codigo 
+WHERE 
+	 db_acadclick.tb_usuario.usu_nome LIKE $P{USUARIO_NOME}]]>
+	</queryString>
+	<field name="gru_nome" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.Long"/>
+	<field name="usu_dt_cadastro" class="java.sql.Date"/>
+	<field name="usu_dataNasc" class="java.sql.Date"/>
+	<field name="usu_nome" class="java.lang.String"/>
+	<field name="usu_sexo" class="java.lang.String"/>
+	<field name="usu_cpf" class="java.lang.String"/>
+	<field name="usu_rg" class="java.lang.String"/>
+	<field name="usu_certidao_nascimento" class="java.lang.Integer"/>
+	<field name="usu_pai" class="java.lang.String"/>
+	<field name="usu_mae" class="java.lang.String"/>
+	<field name="usu_telefone" class="java.lang.String"/>
+	<field name="usu_celular" class="java.lang.String"/>
+	<field name="usu_email" class="java.lang.String"/>
+	<field name="usu_senha" class="java.lang.String"/>
+	<field name="usu_tipo" class="java.lang.Long"/>
+	<field name="usu_ativo" class="java.lang.Boolean"/>
+	<field name="codigo_grupo" class="java.lang.Long"/>
+	<field name="tip_nome" class="java.lang.String"/>
+	<title>
+		<band height="140" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="-20" y="0" width="595" height="140" uuid="4bb217ec-9aaf-4bb5-a311-c5f4fac28474"/>
+				<imageExpression><![CDATA["D:/Google Drive/Projeto Integrador/Imagens/logo_acad.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="151" y="3" width="253" height="30" uuid="06360330-daf8-4e41-a336-d8fa8457c0b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatórios de Usuários]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="-11" y="0" width="100" height="30" uuid="5cf5861d-101e-4cd8-8e2f-fb5b623cddee"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="0" width="100" height="30" uuid="805cc281-d668-4d64-a515-829f88d081a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="0" width="100" height="30" uuid="3f289dc8-f62d-40ec-857b-bd4a9f3008f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="0" width="100" height="30" uuid="bac8e7d4-cee3-40ed-98c6-06def4d8fb10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="100" height="30" uuid="570027a6-2bcf-4866-9f33-ce791434e850"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="1" width="51" height="30" uuid="f79797d3-9aae-449d-bbf0-5c7771554fbf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="1" width="156" height="30" uuid="2dfc0870-76ab-4846-930d-4b8861388020"/>
+				<textFieldExpression><![CDATA[$F{usu_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="1" width="100" height="30" uuid="c378865d-ffa3-4649-97f1-8ee627229b4e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{usu_cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="519" y="1" width="55" height="30" uuid="95efcb74-136d-4619-99b5-190c6055741f"/>
+				<textFieldExpression><![CDATA[$F{gru_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="1" width="100" height="30" uuid="db2df2e3-3f81-450b-9f39-e36b9ca5a2f5"/>
+				<textFieldExpression><![CDATA[$F{tip_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

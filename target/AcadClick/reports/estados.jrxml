@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-04T18:50:39 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fe2f8a5d-e87c-42ab-a85c-fea81e8745aa">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="ZGJfYWNhZGNsaWNrLnRiX2VzdGFkb3MgQVMgLDE0MiwxMDYsMzlmZmY5ZDYtOGYwOS00MWE2LTll&#xA;ZDUtMjI2NjJlMGJkYjYzOw=="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AcadClick Data Adapter "/>
+	<queryString>
+		<![CDATA[SELECT db_acadclick.tb_estados.est_nome,
+	db_acadclick.tb_estados.est_uf
+FROM db_acadclick.tb_estados
+ORDER BY db_acadclick.tb_estados.est_nome ASC]]>
+	</queryString>
+	<field name="est_nome" class="java.lang.String"/>
+	<field name="est_uf" class="java.lang.String"/>
+	<title>
+		<band height="140" splitType="Stretch">
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement x="-20" y="0" width="595" height="140" uuid="5585ae54-8d90-4bbc-95d6-92d7f55fc8ff"/>
+				<imageExpression><![CDATA["src/main/webapp/resources/images/logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="21" width="595" height="30" uuid="923f56f2-ac27-4ec6-9ed4-952fbd3a389b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Estados]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="20" y="0" width="100" height="30" uuid="35774211-a083-45ca-93ce-441365029d4d"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="100" height="30" uuid="00dbe25b-4f30-4057-ba19-840441bce58d"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sigla]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="20" y="0" width="100" height="30" uuid="3a4e62a0-9d0f-4bbe-b40f-c038d231c0a1"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{est_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="30" uuid="e5d404db-d5d9-440d-94b1-3ffc24e98285"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{est_uf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="-20" y="33" width="595" height="30" uuid="428be552-0884-43e7-8c3e-a6d2fac17217"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Avenida Garrastazu Medici s/n Divinópolis de Goiás GO]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,157 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<nav class="am-userinfo-menu">
+		<h:form>
+			<ul>
+				<li><p:commandLink actionListener="#{usuarioBean.listar}"
+						oncomplete="PF('dlgPerfil').show(); PF('dlgConfiguracao').hide(); hide();">
+						<i class="fa  fa-fw  fa-home"></i>Perfil
+				</p:commandLink></li>
+
+				<li><p:commandLink
+						oncomplete="PF('dlgConfiguracao').show(); PF('dlgPerfil').hide(); hide();">
+						<i class="fa  fa-fw  fa-wrench"></i>Configuração</p:commandLink></li>
+				<li class="separator" />
+				<li><p:commandLink action="#{autenticacaoBean.logout}">
+						<i class="fa fa-fw fa-sign-out"></i>Sair</p:commandLink></li>
+			</ul>
+		</h:form>
+	</nav>
+
+
+
+	<p:dialog header="Usuário - Perfil" widgetVar="dlgPerfil"
+		draggable="false" resizable="false" modal="true" closable="true">
+		<h:form id="formCadastross">
+			<p:panelGrid columns="2">
+
+				<p:panel id="painel2" header="Dados Basicos">
+
+					<h:panelGrid id="painelGrid" columns="4">
+
+						<p:outputLabel for="nome" value="Nome:" />
+						<p:inputText id="nome" maxlength="50" size="30"
+							value="#{autenticacaoBean.usuarioLogado.nome}" required="true"
+							requiredMessage="O campo 'Nome' é obrigatório" />
+
+						<p:outputLabel value="Sexo:" />
+						<p:selectOneRadio value="#{autenticacaoBean.usuarioLogado.sexo}">
+							<f:selectItem itemValue="F" itemLabel="Feminino" />
+							<f:selectItem itemValue="M" itemLabel="Masculino" />
+						</p:selectOneRadio>
+
+						<p:outputLabel for="rg" value="RG:" />
+						<p:inputMask id="rg" mask="99.999.999-9" size="10"
+							value="#{autenticacaoBean.usuarioLogado.rg}" required="true"
+							requiredMessage="O campo 'RG' é obrigatório" />
+
+						<p:outputLabel for="cpf" value="CPF:" />
+						<p:inputMask id="cpf" mask="999.999.999-99" size="10"
+							value="#{autenticacaoBean.usuarioLogado.cpf}" required="true"
+							requiredMessage="O campo 'CPF' é obrigatório" />
+
+						<p:outputLabel value="Dt Cadastro: " />
+						<p:calendar value="#{autenticacaoBean.usuarioLogado.dataCadastro}"
+							locale="pt_BR" />
+
+						<p:outputLabel value="Dt Nascimento: " />
+						<p:calendar
+							value="#{autenticacaoBean.usuarioLogado.dataNascimento}"
+							locale="pt_BR" />
+
+						<p:outputLabel value="Pai: " />
+						<p:inputText maxlength="50" size="25"
+							value="#{autenticacaoBean.usuarioLogado.pai}" />
+
+						<p:outputLabel value="Mãe: " />
+						<p:inputText maxlength="50" size="25"
+							value="#{autenticacaoBean.usuarioLogado.mae}" />
+
+						<p:outputLabel value="Telefone:" />
+						<p:inputMask mask="(99)9999-9999" size="18"
+							value="#{autenticacaoBean.usuarioLogado.telefone}" />
+
+						<p:outputLabel value="Celular:" />
+						<p:inputMask mask="(99)9999-9999" size="18"
+							value="#{autenticacaoBean.usuarioLogado.celular}" />
+
+						<p:outputLabel value="Email:" />
+						<p:inputText maxlength="100" size="30"
+							value="#{autenticacaoBean.usuarioLogado.email}" />
+					</h:panelGrid>
+				</p:panel>
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog header="Usuário - Configuração" widgetVar="dlgConfiguracao"
+		draggable="false" resizable="false" modal="true" closable="false">
+		
+			<h:form id="formCadastrosConfig">
+				<p:panelGrid columns="2">
+					<p:panel id="painel2" header="Dados Basicos">
+
+						<h:panelGrid id="painelGrid" columns="4">
+
+							<p:outputLabel for="nome" value="Nome:" />
+							<p:inputText id="nome" maxlength="50" size="30"
+								value="#{autenticacaoBean.usuarioLogado.nome}" required="true"
+								requiredMessage="O campo 'Nome' é obrigatório" />
+
+							<p:outputLabel value="Sexo:" />
+							<p:selectOneRadio value="#{autenticacaoBean.usuarioLogado.sexo}">
+								<f:selectItem itemValue="F" itemLabel="Feminino" />
+								<f:selectItem itemValue="M" itemLabel="Masculino" />
+							</p:selectOneRadio>
+
+							<p:outputLabel for="rg" value="RG:" />
+							<p:inputMask id="rg" mask="99.999.999-9" size="10"
+								value="#{autenticacaoBean.usuarioLogado.rg}" required="true"
+								requiredMessage="O campo 'RG' é obrigatório" />
+
+							<p:outputLabel for="cpf" value="CPF:" />
+							<p:inputMask id="cpf" mask="999.999.999-99" size="10"
+								value="#{autenticacaoBean.usuarioLogado.cpf}" required="true"
+								requiredMessage="O campo 'CPF' é obrigatório" />
+
+							<p:outputLabel value="Dt Cadastro: " />
+							<p:calendar
+								value="#{autenticacaoBean.usuarioLogado.dataCadastro}"
+								locale="pt_BR" />
+
+							<p:outputLabel value="Dt Nascimento: " />
+							<p:calendar
+								value="#{autenticacaoBean.usuarioLogado.dataNascimento}"
+								locale="pt_BR" />
+
+							<p:outputLabel value="Pai: " />
+							<p:inputText maxlength="50" size="25"
+								value="#{autenticacaoBean.usuarioLogado.pai}" />
+
+							<p:outputLabel value="Mãe: " />
+							<p:inputText maxlength="50" size="25"
+								value="#{autenticacaoBean.usuarioLogado.mae}" />
+
+							<p:outputLabel value="Telefone:" />
+							<p:inputMask mask="(99)9999-9999" size="18"
+								value="#{autenticacaoBean.usuarioLogado.telefone}" />
+
+							<p:outputLabel value="Celular:" />
+							<p:inputMask mask="(99)9999-9999" size="18"
+								value="#{autenticacaoBean.usuarioLogado.celular}" />
+
+							<p:outputLabel value="Email:" />
+							<p:inputText maxlength="100" size="30"
+								value="#{autenticacaoBean.usuarioLogado.email}" />
+						</h:panelGrid>
+					</p:panel>
+				</p:panelGrid>
+			</h:form>
+			
+	</p:dialog>
+
+</ui:composition>

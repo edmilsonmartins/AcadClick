@@ -1,0 +1,99 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Usuário</ui:define>
+
+	<ui:define name="content">
+
+		<p:growl id="mensagem" />
+
+		<p:panel header="Alunos - Listagem">
+			<h:form id="formCadastro">
+				<p:panelGrid columns="2">
+
+					<p:panel id="painel" header="Alunos - Listagem">
+						<h:panelGrid id="painel3" columns="4">
+
+							<p:outputLabel for="nome" value="Nome:" />
+							<p:inputText id="nome" maxlength="50" size="25"
+								value="#{alunoBean.aluno.nome}" required="true"
+								requiredMessage="O campo 'Nome' é obrigatório" />
+
+							<p:outputLabel value="Sexo:" />
+							<p:selectOneRadio value="#{alunoBean.aluno.sexo}">
+								<f:selectItem itemValue="F" itemLabel="Feminino" />
+								<f:selectItem itemValue="M" itemLabel="Masculino" />
+							</p:selectOneRadio>
+
+							<p:outputLabel value="Dt Cadastro: " />
+							<p:calendar value="#{alunoBean.aluno.dataCadastro}"
+								locale="pt_BR" />
+
+							<p:outputLabel value="Dt Nascimento: " />
+							<p:calendar value="#{alunoBean.aluno.dataNascimento}"
+								locale="pt_BR" />
+
+
+							<p:outputLabel value="Pai: " />
+							<p:inputText maxlength="50" size="25"
+								value="#{alunoBean.aluno.pai}" />
+
+							<p:outputLabel value="Mãe: " />
+							<p:inputText maxlength="50" size="25"
+								value="#{alunoBean.aluno.mae}" />
+
+							<p:outputLabel value="Telefone:" />
+							<p:inputMask mask="(99)9999-9999" size="18"
+								value="#{alunoBean.aluno.telefone}" />
+
+							<p:outputLabel value="Celular:" />
+							<p:inputMask mask="(99)9999-9999" size="18"
+								value="#{alunoBean.aluno.celular}" />
+
+							<p:outputLabel value="Responsavel: " />
+							<p:selectOneMenu filter="true"
+								value="#{alunoBean.aluno.responsavel}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione um responsável" />
+								<f:selectItems value="#{alunoBean.responsaveis}"
+									var="responsavel" itemValue="#{responsavel}"
+									itemLabel="#{responsavel.nome}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Email:" />
+							<p:inputText maxlength="100" size="25"
+								value="#{alunoBean.aluno.email}" />
+
+							<p:outputLabel value="Grupo: " />
+							<p:selectOneMenu filter="true" value="#{alunoBean.aluno.grupo}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione um grupo" />
+								<f:selectItems value="#{alunoBean.grupos}" var="grupo"
+									itemValue="#{grupo}" itemLabel="#{grupo.nome}" />
+							</p:selectOneMenu>
+
+						</h:panelGrid>
+						<div align="right">
+							<h:panelGrid columns="2">
+								<p:commandButton value="Salvar"
+									actionListener="#{alunoBean.salvar}"
+									update=":mensagem :formCadastro:painel " />
+								<p:commandButton value="
+								Cancelar" />
+							</h:panelGrid>
+						</div>
+					</p:panel>
+				</p:panelGrid>
+			</h:form>
+
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-30T21:07:19 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="responsaveis" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="400cdf6a-7bbd-4ce5-9971-6029d4fec4d3">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AcadClick Data Adapter "/>
+	<parameter name="RESPONSAVEL_NOME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM db_acadclick.tb_responsavel
+WHERE 
+	 db_acadclick.tb_responsavel.res_nome LIKE $P{RESPONSAVEL_NOME}]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long"/>
+	<field name="res_dt_cadastro" class="java.sql.Date"/>
+	<field name="res_dataNasc" class="java.sql.Date"/>
+	<field name="res_nome" class="java.lang.String"/>
+	<field name="res_sexo" class="java.lang.String"/>
+	<field name="res_cpf" class="java.lang.String"/>
+	<field name="res_rg" class="java.lang.String"/>
+	<field name="res_telefone" class="java.lang.String"/>
+	<field name="res_celular" class="java.lang.String"/>
+	<field name="res_email" class="java.lang.String"/>
+	<field name="res_conheceajesus" class="java.lang.String"/>
+	<field name="res_pertenceoutraigreja" class="java.lang.String"/>
+	<field name="res_endereco" class="java.lang.String"/>
+	<field name="res_numero" class="java.lang.String"/>
+	<field name="res_complemento" class="java.lang.String"/>
+	<field name="res_bairro" class="java.lang.String"/>
+	<field name="res_cep" class="java.lang.String"/>
+	<field name="res_cidade" class="java.lang.Long"/>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="-2" width="100" height="30" uuid="c94177c9-764b-41a8-819d-0dfcb043895a"/>
+				<text><![CDATA[codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="131" y="0" width="100" height="30" uuid="ff4c2f95-1fa3-44cd-9880-ba36b311f07d"/>
+				<text><![CDATA[res_nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="0" width="100" height="30" uuid="5341b64d-a1e8-4125-86e1-5b8252eab0be"/>
+				<text><![CDATA[res_telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="0" width="100" height="30" uuid="477993e8-7ac6-4e81-84c0-c9908d37b21c"/>
+				<text><![CDATA[res_celular]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement x="27" y="0" width="100" height="30" uuid="e52085ea-0b2c-444c-97cc-35f78c0b400a"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="1" width="100" height="30" uuid="b12c35a8-60a0-473b-a527-e98603446a32"/>
+				<textFieldExpression><![CDATA[$F{res_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="287" y="1" width="100" height="30" uuid="1f783656-8985-42c3-baf9-3e9d517dfcfa"/>
+				<textFieldExpression><![CDATA[$F{res_telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="1" width="100" height="30" uuid="9c36bf3b-1e0a-421c-8963-ccaa2f9e52df"/>
+				<textFieldExpression><![CDATA[$F{res_celular}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

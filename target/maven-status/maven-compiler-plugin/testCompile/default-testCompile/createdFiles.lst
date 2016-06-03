@@ -1,0 +1,7 @@
+br\edu\ifgoiano\acadclick\dao\ResponsavelDAOTest.class
+br\edu\ifgoiano\acadclick\dao\GrupoDAOTest.class
+br\edu\ifgoiano\acadclick\dao\UsuarioDAOTest.class
+br\edu\ifgoiano\acadclick\dao\AlunoDAOTest.class
+br\edu\ifgoiano\acadclick\dao\EstadoDAOTest.class
+br\edu\ifgoiano\acadclick\dao\CidadeDAOTest.class
+br\edu\ifgoiano\acadclick\util\HibernateUtilTest.class

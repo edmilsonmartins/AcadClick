@@ -1,0 +1,80 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Home</ui:define>
+
+	<ui:define name="content">
+		<br />
+		<h:form>
+			<p:dataTable emptyMessage="">
+				<f:facet name="header">
+            EBD - Escola Bíblica Dominical
+        </f:facet>
+
+				<p:columnGroup type="header">
+					<p:row>
+
+						<p:column colspan="8" headerText="EBD em Números" />
+					</p:row>
+					<p:row>
+						<p:column colspan="2" headerText="GGI" />
+						<p:column colspan="2" headerText="GGJ" />
+						<p:column colspan="2" headerText="GGA" />
+						<p:column colspan="2" headerText="GGF" />
+					</p:row>
+					<p:row>
+						<p:column headerText="Meninos" />
+						<p:column headerText="Meninas" />
+						<p:column headerText="Meninos" />
+						<p:column headerText="Meninas" />
+						<p:column headerText="Meninos" />
+						<p:column headerText="Meninas" />
+						<p:column headerText="Meninos" />
+						<p:column headerText="Meninas" />
+					</p:row>
+				</p:columnGroup>
+				<p:columnGroup type="footer">
+					<p:row>
+
+						<p:column style="text-align:center" footerText="#{gGIBean.quantidadeMeninos}" />
+						<p:column style="text-align:center" footerText="#{gGIBean.quantidadeMeninas}" />
+						<p:column style="text-align:center" footerText="#{gGJBean.quantidadeMeninos}" />
+						<p:column style="text-align:center" footerText="#{gGJBean.quantidadeMeninas}" />
+						<p:column style="text-align:center" footerText="#{gGABean.quantidadeMeninos}" />
+						<p:column style="text-align:center" footerText="#{gGABean.quantidadeMeninas}" />
+						<p:column style="text-align:center" footerText="#{gGFBean.quantidadeMeninos}" />
+						<p:column style="text-align:center" footerText="#{gGFBean.quantidadeMeninas}" />
+					</p:row>
+					<p:row>
+
+						<p:column colspan="2" style="text-align:center" footerText="#{gGIBean.quantidadeGGI}"/>
+						<p:column colspan="2" style="text-align:center" footerText="#{gGJBean.quantidadeGGJ}"/>
+						<p:column colspan="2" style="text-align:center" footerText="#{gGABean.quantidadeGGA}" />
+						<p:column colspan="2" style="text-align:center" footerText="#{gGFBean.quantidadeGGF}"/>
+
+					</p:row>
+					<p:row>
+
+						<p:column colspan="8" style="text-align:center" footerText="Total de Alunos Matriculados"/>
+
+					</p:row>
+					<p:row>
+
+						<p:column colspan="8" style="text-align:center" footerText="#{alunoBean.quantidadeAlunos}"/>
+
+					</p:row>
+				</p:columnGroup>
+
+				<f:facet name="footer">
+
+				</f:facet>
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,120 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:dataGrid var="aluno" value="#{gGJBean.alunosGGJ}" columns="6"
+				layout="grid" rows="12" paginator="true" id="cars"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="6,12,16">
+
+				<f:facet name="header">
+            		GGI - Grande Grupo Infantil
+        		</f:facet>
+
+				<p:panel header="#{aluno.nome}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+
+						<p:graphicImage id="foto" value="#{imagemBean.foto}">
+							<f:param name="caminho" value="#{aluno.caminho}" />
+						</p:graphicImage>
+
+						<p:commandButton icon="ui-icon ui-icon-search"
+							actionListener="#{alunoBean.editar}"
+							update=":formListagem:painel :formListagem:painel2"
+							oncomplete="PF('carDialog').show();">
+							<f:attribute name="alunoSelecionado" value="#{aluno}" />
+						</p:commandButton>
+					</h:panelGrid>
+				</p:panel>
+
+			</p:dataGrid>
+		</h:form>
+
+		<p:dialog header="Car Info" widgetVar="carDialog" modal="true">
+			<h:form id="formListagem">
+				<p:panelGrid columns="2">
+					<p:panel id="painel" header="Foto">						
+						<p:graphicImage id="foto" value="#{imagemBean.foto}">
+							<f:param name="caminho" value="#{alunoBean.aluno.caminho}" />
+						</p:graphicImage>
+						
+						<p:fileUpload id="upload" mode="advanced"
+						fileUploadListener="#{alunoBean.upload}"
+						update=":formListagem:foto" auto="true" />
+					</p:panel>
+					<p:panel id="painel2" header="Alunos - Listagem">
+						<h:panelGrid id="painel3" columns="4">
+						
+							<p:outputLabel value="Nome:" />
+							<p:inputText maxlength="50" size="25"
+								value="#{alunoBean.aluno.nome}" />
+
+							<p:outputLabel value="Sexo:" />
+							<p:selectOneRadio value="#{alunoBean.aluno.sexo}">
+								<f:selectItem itemValue="F" itemLabel="Feminino" />
+								<f:selectItem itemValue="M" itemLabel="Masculino" />
+							</p:selectOneRadio>
+
+							<p:outputLabel value="Dt Cadastro: " />
+							<p:calendar value="#{alunoBean.aluno.dataCadastro}"
+								locale="pt_BR" />
+
+							<p:outputLabel value="Dt Nascimento: " />
+							<p:calendar value="#{alunoBean.aluno.dataNascimento}"
+								locale="pt_BR" />
+
+
+							<p:outputLabel value="Pai: " />
+							<p:inputText maxlength="50" size="25"
+								value="#{alunoBean.aluno.pai}" />
+
+							<p:outputLabel value="Mãe: " />
+							<p:inputText maxlength="50" size="25"
+								value="#{alunoBean.aluno.mae}" />
+
+							<p:outputLabel value="Telefone:" />
+							<p:inputMask mask="(99)9999-9999" size="18"
+								value="#{alunoBean.aluno.telefone}" />
+
+							<p:outputLabel value="Celular:" />
+							<p:inputMask mask="(99)9999-9999" size="18"
+								value="#{alunoBean.aluno.celular}" />
+
+							<p:outputLabel value="Responsavel: " />
+							<p:selectOneMenu filter="true"
+								value="#{alunoBean.aluno.responsavel}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione um responsável" />
+								<f:selectItems value="#{alunoBean.responsaveis}"
+									var="responsavel" itemValue="#{responsavel}"
+									itemLabel="#{responsavel.nome}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Email:" />
+							<p:inputText maxlength="100" size="25"
+								value="#{alunoBean.aluno.email}" />
+
+							<p:outputLabel value="Grupo: " />
+							<p:selectOneMenu filter="true" value="#{alunoBean.aluno.grupo}"
+								converter="omnifaces.SelectItemsConverter">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione um grupo" />
+								<f:selectItems value="#{alunoBean.grupos}" var="grupo"
+									itemValue="#{grupo}" itemLabel="#{grupo.nome}" />
+							</p:selectOneMenu>
+
+						</h:panelGrid>
+					</p:panel>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+
+</ui:composition>

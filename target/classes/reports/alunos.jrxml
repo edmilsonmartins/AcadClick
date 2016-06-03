@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-31T20:37:11 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="alunos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c9e708e7-53f5-4fe1-b3b7-77dd801b04e9">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AcadClick Data Adapter "/>
+	<parameter name="ALUNO_NOME" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="GRUPO_NOME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM db_acadclick.tb_aluno
+	INNER JOIN db_acadclick.tb_grupo ON 
+	 db_acadclick.tb_aluno.codigo_grupo = db_acadclick.tb_grupo.codigo 
+	LEFT JOIN db_acadclick.tb_responsavel ON 
+	 db_acadclick.tb_aluno.codigo_responsavel = db_acadclick.tb_responsavel.codigo 
+WHERE 
+	 db_acadclick.tb_aluno.alu_nome LIKE $P{ALUNO_NOME} 
+	 AND db_acadclick.tb_grupo.gru_nome LIKE $P{GRUPO_NOME}]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long"/>
+	<field name="alu_dt_cadastro" class="java.sql.Date"/>
+	<field name="alu_nome" class="java.lang.String"/>
+	<field name="alu_dataNasc" class="java.sql.Date"/>
+	<field name="alu_sexo" class="java.lang.String"/>
+	<field name="alu_certidao_nascimento" class="java.lang.Integer"/>
+	<field name="alu_pai" class="java.lang.String"/>
+	<field name="alu_mae" class="java.lang.String"/>
+	<field name="alu_telefone" class="java.lang.String"/>
+	<field name="alu_celular" class="java.lang.String"/>
+	<field name="alu_email" class="java.lang.String"/>
+	<field name="codigo_grupo" class="java.lang.Long"/>
+	<field name="codigo_responsavel" class="java.lang.Long"/>
+	<field name="COLUMN_14" class="java.lang.Long"/>
+	<field name="gru_nome" class="java.lang.String"/>
+	<field name="gru_descricao" class="java.lang.String"/>
+	<field name="COLUMN_17" class="java.lang.Long"/>
+	<field name="res_dt_cadastro" class="java.sql.Date"/>
+	<field name="res_dataNasc" class="java.sql.Date"/>
+	<field name="res_nome" class="java.lang.String"/>
+	<field name="res_sexo" class="java.lang.String"/>
+	<field name="res_cpf" class="java.lang.String"/>
+	<field name="res_rg" class="java.lang.String"/>
+	<field name="res_telefone" class="java.lang.String"/>
+	<field name="res_celular" class="java.lang.String"/>
+	<field name="res_email" class="java.lang.String"/>
+	<field name="res_conheceajesus" class="java.lang.String"/>
+	<field name="res_pertenceoutraigreja" class="java.lang.String"/>
+	<field name="res_endereco" class="java.lang.String"/>
+	<field name="res_numero" class="java.lang.String"/>
+	<field name="res_complemento" class="java.lang.String"/>
+	<field name="res_bairro" class="java.lang.String"/>
+	<field name="res_cep" class="java.lang.String"/>
+	<field name="res_cidade" class="java.lang.Long"/>
+	<title>
+		<band height="140" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="-20" y="0" width="595" height="140" uuid="4bb217ec-9aaf-4bb5-a311-c5f4fac28474"/>
+				<imageExpression><![CDATA["D:/Google Drive/Projeto Integrador/Imagens/logo_acad.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="177" y="6" width="200" height="30" uuid="0095dcc1-a2af-4d7e-871d-e2acc133d6a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatórios de Alunos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="-7" y="0" width="50" height="30" uuid="6abdcf19-e0a9-4aa8-a716-bf33f389d411"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="0" width="100" height="30" uuid="9cc72641-e86b-4faa-84fb-39e1b039d6d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="100" height="30" uuid="ec02b7b8-9d6a-4c51-87e2-ee6fdcff1f66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Nascimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="0" width="100" height="30" uuid="02c9ca50-d3ed-49ab-b199-be03ee31ad6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsável]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="100" height="30" uuid="81a82f06-fbce-435a-95a7-d4f93b03de43"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grupo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="30" height="30" uuid="866f40aa-781d-4fad-8f2c-78cfe5ea2d1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="170" height="30" uuid="e5d2addb-273d-4705-b7ff-e49aec81c8a8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{alu_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="100" height="30" uuid="e4f3ac31-3757-471f-a216-1db779c9b9be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{alu_dataNasc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="326" y="0" width="160" height="30" uuid="aa0c92aa-3fd4-4164-ae05-4a0b4b9c9fd9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{res_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="100" height="30" uuid="734b3eae-c84b-4487-8bc8-fb23eab5d4a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{gru_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

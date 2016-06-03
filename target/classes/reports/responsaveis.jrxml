@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.1.final using JasperReports Library version 6.2.1  -->
+<!-- 2016-05-31T20:49:47 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="responsaveis" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="400cdf6a-7bbd-4ce5-9971-6029d4fec4d3">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="AcadClick Data Adapter "/>
+	<parameter name="RESPONSAVEL_NOME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM db_acadclick.tb_responsavel
+WHERE 
+	 db_acadclick.tb_responsavel.res_nome LIKE $P{RESPONSAVEL_NOME}]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long"/>
+	<field name="res_dt_cadastro" class="java.sql.Date"/>
+	<field name="res_dataNasc" class="java.sql.Date"/>
+	<field name="res_nome" class="java.lang.String"/>
+	<field name="res_sexo" class="java.lang.String"/>
+	<field name="res_cpf" class="java.lang.String"/>
+	<field name="res_rg" class="java.lang.String"/>
+	<field name="res_telefone" class="java.lang.String"/>
+	<field name="res_celular" class="java.lang.String"/>
+	<field name="res_email" class="java.lang.String"/>
+	<field name="res_conheceajesus" class="java.lang.String"/>
+	<field name="res_pertenceoutraigreja" class="java.lang.String"/>
+	<field name="res_endereco" class="java.lang.String"/>
+	<field name="res_numero" class="java.lang.String"/>
+	<field name="res_complemento" class="java.lang.String"/>
+	<field name="res_bairro" class="java.lang.String"/>
+	<field name="res_cep" class="java.lang.String"/>
+	<field name="res_cidade" class="java.lang.Long"/>
+	<title>
+		<band height="140" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="-20" y="0" width="595" height="140" uuid="248797b1-df32-4d89-8a81-7c496e2098ac"/>
+				<imageExpression><![CDATA["D:/Google Drive/Projeto Integrador/Imagens/logo_acad.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="151" y="3" width="253" height="30" uuid="dbb9b532-d5ca-4b26-9308-ef50fee22982"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatórios de Responsáveis]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="0" width="83" height="30" uuid="c94177c9-764b-41a8-819d-0dfcb043895a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="0" width="100" height="30" uuid="ff4c2f95-1fa3-44cd-9880-ba36b311f07d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="0" width="100" height="30" uuid="5341b64d-a1e8-4125-86e1-5b8252eab0be"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="0" width="100" height="30" uuid="477993e8-7ac6-4e81-84c0-c9908d37b21c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement x="27" y="0" width="33" height="30" uuid="e52085ea-0b2c-444c-97cc-35f78c0b400a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="109" y="1" width="187" height="30" uuid="b12c35a8-60a0-473b-a527-e98603446a32"/>
+				<textFieldExpression><![CDATA[$F{res_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="1" width="100" height="30" uuid="1f783656-8985-42c3-baf9-3e9d517dfcfa"/>
+				<textFieldExpression><![CDATA[$F{res_telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="451" y="1" width="100" height="30" uuid="9c36bf3b-1e0a-421c-8963-ccaa2f9e52df"/>
+				<textFieldExpression><![CDATA[$F{res_celular}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

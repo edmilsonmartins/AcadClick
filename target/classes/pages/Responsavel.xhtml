@@ -1,0 +1,320 @@
+<ui:composition template="/WEB-INF/templates/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Responsável</ui:define>
+
+	<ui:define name="content">
+		<p:growl id="mensagem" />
+
+		<h:form id="formListagem">
+			<p:panel header="Responsáveis - Listagem">
+				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+					paginator="true" value="#{responsavelBean.responsaveis}"
+					var="responsavel">
+
+					<f:facet name="header">
+						<p:commandButton icon="ui-icon-plus"
+							oncomplete="PF('dialogo').show();"
+							actionListener="#{responsavelBean.novo}"
+							update=":mensagem :formCadastro:painel :formCadastro:painel2">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-print"
+							actionListener="#{responsavelBean.imprimir}" />
+					</f:facet>
+
+					<p:column headerText="Código"
+						filterStyle="max-width: 40px; min-width: 40px;" width="50"
+						style="text-align: center">
+						<h:outputText value="#{responsavel.codigo}" />
+					</p:column>
+
+					<p:column headerText="Nome" sortBy="#{responsavel.nome}"
+						filterBy="#{responsavel.nome}"
+						filterStyle="max-width: 40px; min-width: 40px;" width="200">
+						<h:outputText value="#{responsavel.nome}" />
+					</p:column>
+
+					<p:column headerText="CPF" style="text-align: center">
+						<h:outputText value="#{responsavel.cpf}" />
+					</p:column>
+
+					<p:column headerText="Telefone" style="text-align: center">
+						<h:outputText value="#{responsavel.telefone}" />
+					</p:column>
+
+					<p:column headerText="Celular" style="text-align: center">
+						<h:outputText value="#{responsavel.celular}" />
+					</p:column>
+
+
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{responsavelBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir a pessoa?" icon="ui-icon-alert" />
+							<f:attribute name="responsavelSelecionado" value="#{responsavel}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{responsavelBean.editar}"
+							update=":mensagem :formCadastro:painel :formCadastro:painel2"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="responsavelSelecionado" value="#{responsavel}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+
+						<p:commandButton value="Família"
+							actionListener="#{responsavelBean.listarFamilia}"
+							update=":formResponsavel:painesl :formResponsavel:painelF :formResponsavel:painelF2"
+							oncomplete="PF('dlgFamilia').show();">
+							<f:attribute name="responsavelSelecionado" value="#{responsavel}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Responsáveis - Cadastro" widgetVar="dialogo"
+			draggable="false" resizable="false" modal="true" closable="false">
+			<h:form id="formCadastro">
+				<p:panelGrid columns="1">
+					<p:panel id="painel" header="Dados Basicos">
+						<h:panelGrid id="painel3" columns="4">
+
+							<p:outputLabel for="nome" value="Nome:" />
+							<p:inputText id="nome" maxlength="50" size="30"
+								value="#{responsavelBean.responsavel.nome}" required="true"
+								requiredMessage="O campo 'Nome' é obrigatório" />
+
+							<p:outputLabel value="Sexo:" />
+							<p:selectOneRadio value="#{responsavelBean.responsavel.sexo}">
+								<f:selectItem itemValue="F" itemLabel="Feminino" />
+								<f:selectItem itemValue="M" itemLabel="Masculino" />
+							</p:selectOneRadio>
+
+							<p:outputLabel for="rg" value="RG:" />
+							<p:inputMask id="rg" mask="99.999.999-9" size="10"
+								value="#{responsavelBean.responsavel.rg}" required="true"
+								requiredMessage="O campo 'RG' é obrigatório" />
+
+							<p:outputLabel for="cpf" value="CPF:" />
+							<p:inputMask id="cpf" mask="999.999.999-99" size="10"
+								value="#{responsavelBean.responsavel.cpf}" required="true"
+								requiredMessage="O campo 'CPF' é obrigatório" />
+
+							<p:outputLabel value="Dt Cadastro: " />
+							<p:calendar value="#{responsavelBean.responsavel.dataCadastro}"
+								locale="pt_BR" />
+
+							<p:outputLabel value="Dt Nascimento: " />
+							<p:calendar value="#{responsavelBean.responsavel.dataNascimento}"
+								locale="pt_BR" />
+
+
+							<p:outputLabel value="Telefone:" />
+							<p:inputMask mask="(99)9999-9999" size="18"
+								value="#{responsavelBean.responsavel.telefone}" />
+
+							<p:outputLabel value="Celular:" />
+							<p:inputMask mask="(99)9999-9999" size="18"
+								value="#{responsavelBean.responsavel.celular}" />
+
+
+							<p:outputLabel value="Email:" />
+							<p:inputText maxlength="100" size="30"
+								value="#{responsavelBean.responsavel.email}" />
+
+							<p:outputLabel for="conheceajesus" value="Conhece a Jesus:" />
+							<p:selectOneRadio id="conheceajesus"
+								value="#{responsavelBean.responsavel.conheceajesus}"
+								required="true"
+								requiredMessage="O campo 'Conhece a Jesus' é obrigatório">
+								<f:selectItem itemValue="S" itemLabel="Sim" />
+								<f:selectItem itemValue="N" itemLabel="Não" />
+							</p:selectOneRadio>
+
+							<p:outputLabel value="Pertence outra igreja:" />
+							<p:selectOneRadio
+								value="#{responsavelBean.responsavel.pertenceoutraigreja}">
+								<f:selectItem itemValue="S" itemLabel="Sim" />
+								<f:selectItem itemValue="N" itemLabel="Não" />
+							</p:selectOneRadio>
+						</h:panelGrid>
+					</p:panel>
+					<p:panel id="painel2" header="Endereço">
+
+						<h:panelGrid id="painelGrid2" columns="4">
+
+
+							<p:outputLabel for="estado" value="Estado:" />
+							<p:selectOneMenu id="estado" filter="true"
+								converter="omnifaces.SelectItemsConverter"
+								value="#{responsavelBean.estado}">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione um estado" />
+								<f:selectItems value="#{responsavelBean.estados}" var="estado"
+									itemValue="#{estado}" itemLabel="#{estado.nome}" />
+								<p:ajax listener="#{responsavelBean.popular}"
+									update=":formCadastro:cidade" />
+							</p:selectOneMenu>
+
+							<p:outputLabel for="cidade" value="Cidade:" />
+							<p:selectOneMenu id="cidade" filter="true" required="true"
+								requiredMessage="O campo 'Cidade' é obrigatório"
+								converter="omnifaces.SelectItemsConverter"
+								value="#{responsavelBean.responsavel.cidade}">
+								<f:selectItem noSelectionOption="true"
+									itemLabel="Selecione uma cidade" />
+								<f:selectItems value="#{responsavelBean.cidades}" var="cidade"
+									itemValue="#{cidade}" itemLabel="#{cidade.nome}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Endereço:" />
+							<p:inputText maxlength="100" size="35"
+								value="#{responsavelBean.responsavel.endereco}" />
+
+							<p:outputLabel value=" Número: " />
+							<p:inputText maxlength="5" size="5"
+								value="#{responsavelBean.responsavel.numero}" />
+
+							<p:outputLabel value="Complemento:" />
+							<p:inputText maxlength="10" size="35"
+								value="#{responsavelBean.responsavel.complemento}" />
+
+							<p:outputLabel value="Bairro:" />
+							<p:inputText maxlength="30" size="20"
+								value="#{responsavelBean.responsavel.bairro}" />
+
+							<p:outputLabel value="CEP:" />
+							<p:inputMask mask="99.999-999" size="10"
+								value="#{responsavelBean.responsavel.cep}" />
+						</h:panelGrid>
+
+						<div align="right">
+							<h:panelGrid columns="2">
+								<p:commandButton value="Salvar"
+									actionListener="#{responsavelBean.salvar}"
+									update=":mensagem :formCadastro:painel :formCadastro:painel2 :formListagem:tabela" />
+								<p:commandButton value="Fechar"
+									oncomplete="PF('dialogo').hide();" />
+							</h:panelGrid>
+						</div>
+
+					</p:panel>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog header="Família" widgetVar="dlgFamilia" draggable="false"
+			resizable="false" modal="true" width="750">
+			<h:form id="formResponsavel">
+				<p:panelGrid columns="1">
+					<p:panel id="painelF" header="Dados Basicos">
+
+						<h:panelGrid id="painel" columns="4">
+							<p:outputLabel value="Nome:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.nome}"
+								style="margin-right: 2cm;" />
+
+							<p:outputLabel value="Sexo:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.sexo.name()}" />
+
+							<p:outputLabel value="CPF:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.cpf}" />
+
+							<p:outputLabel value="Dt Cadastro: " style="font-weight: bold" />
+							<p:outputLabel
+								value="#{responsavelBean.responsavel.dataCadastro}" />
+
+							<p:outputLabel value="Dt Nascimento: " style="font-weight: bold" />
+							<p:outputLabel
+								value="#{responsavelBean.responsavel.dataNascimento}" />
+
+							<p:outputLabel value="Telefone:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.telefone}" />
+
+							<p:outputLabel value="Celular:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.celular}" />
+
+							<p:outputLabel value="Email:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.email}" />
+
+						</h:panelGrid>
+					</p:panel>
+					<p:panel id="painelF2" header="Endereço">
+
+						<h:panelGrid id="painels" columns="4">
+							<p:outputLabel value="Endereço:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.endereco}"
+								style="margin-right: 2cm;" />
+
+							<p:outputLabel value=" Número: " style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.numero}" />
+
+							<p:outputLabel value="Complemento:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.complemento}" />
+
+							<p:outputLabel value="Bairro:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.bairro}" />
+
+							<p:outputLabel value="CEP:" style="font-weight: bold" />
+							<p:outputLabel value="#{responsavelBean.responsavel.cep}" />
+
+						</h:panelGrid>
+					</p:panel>
+
+
+					<h:panelGrid id="painesl" columns="4">
+
+						<p:dataTable id="paine" var="familia"
+							value="#{responsavelBean.familia}">
+							<p:column headerText="Código">
+								<h:outputText value="#{familia.codigo}" />
+							</p:column>
+
+							<p:column headerText="Nome" width="250">
+								<h:outputText value="#{familia.nome}" />
+							</p:column>
+
+							<p:column headerText="Idade">
+								<h:outputText value="#{familia.idade}" />
+							</p:column>
+
+							<p:column headerText="Grupo">
+								<h:outputText value="#{familia.grupo.nome}" />
+							</p:column>
+						</p:dataTable>
+
+
+
+					</h:panelGrid>
+
+				</p:panelGrid>
+
+				<div align="right">
+					<h:panelGrid columns="2">
+						<p:commandButton value="Fechar"
+							oncomplete="PF('dlgFamilia').hide();" />
+					</h:panelGrid>
+				</div>
+			</h:form>
+
+		</p:dialog>
+	</ui:define>
+</ui:composition>

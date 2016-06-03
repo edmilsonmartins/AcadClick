@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<nav class="am-userinfo-menu">
+		<h:form>
+			<ul>
+				<li><p:commandLink oncomplete="PF('dlgPerfil').show(); PF('dlgConfiguracao').hide(); hide();">
+						<i class="fa  fa-fw  fa-home"></i>Perfil
+				</p:commandLink></li>
+
+				<li><p:commandLink oncomplete="PF('dlgConfiguracao').show(); PF('dlgPerfil').hide(); hide();">
+						<i class="fa  fa-fw  fa-wrench"></i>Configuração</p:commandLink></li>
+				<li class="separator" />
+				<li><p:commandLink action="#{autenticacaoBean.logout}">
+						<i class="fa fa-fw fa-sign-out"></i>Sair</p:commandLink></li>
+			</ul>
+		</h:form>
+	</nav>
+
+	<!--  
+	<p:dialog header="Usuário - Perfil" widgetVar="dlgPerfil"
+		draggable="false" resizable="false" modal="true" closable="false">
+		<div align="right">
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Cancelar"
+					oncomplete="PF('dlgPerfil').hide();">
+				</p:commandButton>
+			</h:panelGrid>
+		</div>
+	</p:dialog>
+	
+	<p:dialog header="Usuário - Configuração" widgetVar="dlgConfiguracao"
+		draggable="false" resizable="false" modal="true" closable="false">
+		<div align="right">
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Cancelar"
+					oncomplete="PF('dlgConfiguracao').hide();">
+				</p:commandButton>
+			</h:panelGrid>
+		</div>
+	</p:dialog>
+	-->
+</ui:composition>

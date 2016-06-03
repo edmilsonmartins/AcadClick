@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+	<!-- Sidebar -->
+	<nav class="am-menu">
+
+		<ul class="nav sidebar-nav">
+			<h:form>
+				<li><a href="http://localhost:8080/AcadClick/pages/Home.xhtml"><i
+						class="fa fa-fw fa-home"></i> Home</a></li>
+
+				<li><a
+					href="http://localhost:8080/AcadClick/pages/Igreja.xhtml"><i
+						class="fa fa-fw fa-plus"></i>Igreja</a></li>
+
+				<!-- <li><a  href="http://localhost:8080/AcadClick/Fotos.xhtml"><i
+						class="fa fa-picture-o"></i>Fotos</a></li> -->
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"><i class="fa fa-fw fa-folder"></i>
+						Cadastros <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<h:outputLink style="font-size: 14px;" rendered="#{autenticacaoBean.temPermissoes(['COORDENADOR','PASTOR', 'GGI', 'GGJ', 'GGA', 'GGF'])}" value="Aluno.xhtml"><li>Alunos</li></h:outputLink>
+						<h:outputLink style="font-size: 14px;" rendered="#{autenticacaoBean.temPermissoes(['COORDENADOR','PASTOR', 'GGI', 'GGJ', 'GGA', 'GGF'])}" value="Responsavel.xhtml"><li>Responsáveis</li></h:outputLink>
+						<h:outputLink style="font-size: 14px;" rendered="#{autenticacaoBean.temPermissoes(['PASTOR', 'COORDENADOR'])}" value="Usuario.xhtml"><li>Usuários</li></h:outputLink>
+						<h:outputLink style="font-size: 14px;" rendered="#{autenticacaoBean.temPermissoes(['PASTOR', 'COORDENADOR'])}" value="Grupo.xhtml"><li>Grupos</li></h:outputLink>
+					</ul></li>
+
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"><i class="fa fa-fw fa-folder"></i>
+						Grupos <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+					
+						<h:outputLink style="font-size: 14px;" rendered="#{autenticacaoBean.temPermissoes(['COORDENADOR','PASTOR', 'GGI'])}" value="GGI.xhtml" ><li>GGI</li></h:outputLink>
+						<h:outputLink style="font-size: 14px;" rendered="#{autenticacaoBean.temPermissoes(['COORDENADOR','PASTOR', 'GGJ'])}" value="GGJ.xhtml"><li>GGJ</li></h:outputLink>
+						<h:outputLink style="font-size: 14px;" rendered="#{autenticacaoBean.temPermissoes(['COORDENADOR','PASTOR', 'GGA'])}" value="GGA.xhtml"><li>GGA</li></h:outputLink>
+						<h:outputLink style="font-size: 14px;" rendered="#{autenticacaoBean.temPermissoes(['COORDENADOR','PASTOR', 'GGF'])}" value="GGF.xhtml"><li>GGF</li></h:outputLink>
+
+					</ul></li>
+					
+				<!-- 
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown"><i class="fa fa-fw fa-folder"></i>
+					Relatórios <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+
+					<li><a href="#">Família</a></li>
+					<li><a href="#">Grupo</a></li>
+
+				</ul></li>
+			
+			
+			 -->
+
+			</h:form>
+		</ul>
+
+	</nav>
+
+</ui:composition>
